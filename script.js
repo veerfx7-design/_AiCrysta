@@ -10,3 +10,16 @@ async function search() {
     <p><b>Perplexity:</b> ${q} का विश्लेषण ...</p>
   `;
 }
+async function search() {
+  const q = document.getElementById("query").value;
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "⏳ AI se soch rahe hain...";
+
+  const res = await fetch(`/api/ai?query=${encodeURIComponent(q)}`);
+  const data = await res.json();
+
+  resultsDiv.innerHTML = `
+    <p><b>ChatGPT:</b> ${data.chatgpt}</p>
+    <p><b>Gemini:</b> ${data.gemini}</p>
+  `;
+}
