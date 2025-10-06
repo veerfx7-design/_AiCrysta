@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI CRYSTA - Clarity from every corner of AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+        }
+
+        header {
+            background: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            display: flex;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 18px 20px;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+
+        .search-box input::placeholder {
+            color: #95a5a6;
+        }
+
+        .search-box button {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .divider {
+            height: 1px;
+            background: #ecf0f1;
+            margin: 40px 0;
+        }
+
+        .results-section {
+            padding: 0 20px 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .ai-results {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .ai-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .ai-header {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .ai-header h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .ai-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: white;
+        }
+
+        .chatgpt-logo {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/240px-ChatGPT_logo.svg.png');
+        }
+
+        .gemini-logo {
+            background-image: url('https://logowik.com/content/uploads/images/google-gemini.png');
+            background-size: 80%;
+        }
+
+        .perplexity-logo {
+            background-image: url('https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/v1495782520/dyqlqgqgditquqkqkqjq.png');
+        }
+
+        .response-box {
+            padding: 25px;
+            min-height: 250px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            background: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            background: #f8f9fa;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .btn-save {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-share {
+            background: #2980b9;
+            color: white;
+        }
+
+        .btn-explore {
+            background: #f39c12;
+            color: white;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .ai-results {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+            
+            .ai-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>AI CRYSTA</h1>
+                <div class="tagline">Clarity from every corner of AI</div>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search Anything">
+                    <button onclick="searchAI()">Search</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="divider"></div>
+
+        <section class="results-section">
+            <h2 class="section-title">AI Responses</h2>
+            
+            <div class="ai-results">
+                <!-- ChatGPT Card -->
+                <div class="ai-card">
+                    <div class="ai-header">
+                        <div class="ai-logo chatgpt-logo"></div>
+                        <h3>ChatGPT</h3>
+                    </div>
+                    <div class="response-box" id="chatgptResponse">
+                        Response from ChatGPT
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-save" onclick="saveResponse('chatgpt')">Save</button>
+                        <button class="btn btn-share" onclick="shareResponse('chatgpt')">Share</button>
+                    </div>
+                </div>
+
+                <!-- Gemini Card -->
+                <div class="ai-card">
+                    <div class="ai-header">
+                        <div class="ai-logo gemini-logo"></div>
+                        <h3>Gemini</h3>
+                    </div>
+                    <div class="response-box" id="geminiResponse">
+                        Response from Gemini
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-save" onclick="saveResponse('gemini')">Save</button>
+                        <button class="btn btn-share" onclick="shareResponse('gemini')">Share</button>
+                    </div>
+                </div>
+
+                <!-- Perplexity Card -->
+                <div class="ai-card">
+                    <div class="ai-header">
+                        <div class="ai-logo perplexity-logo"></div>
+                        <h3>Perplexity</h3>
+                    </div>
+                    <div class="response-box" id="perplexityResponse">
+                        Response from Perplexity
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-save" onclick="saveResponse('perplexity')">Save</button>
+                        <button class="btn btn-explore" onclick="exploreMore()">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        async function searchAI() {
+            const query = document.getElementById('searchInput').value.trim();
+            
+            if (!query) {
+                alert('Please enter a search query!');
+                return;
+            }
+
+            showLoading();
+
+            setTimeout(() => {
+                const responses = {
+                    chatgpt: `🤖 <strong>ChatGPT Response:</strong><br><br>Based on your query "<strong>${query}</strong>", here is the comprehensive analysis from ChatGPT...<br><br>This would include detailed explanations, examples, and contextual information from OpenAI's advanced language model.`,
+                    gemini: `✨ <strong>Gemini Response:</strong><br><br>Regarding "<strong>${query}</strong>", Google Gemini provides this detailed information with multiple perspectives...<br><br>Gemini offers creative insights and practical applications with Google's AI technology.`,
+                    perplexity: `🔍 <strong>Perplexity Response:</strong><br><br>For "<strong>${query}</strong>", Perplexity AI offers deep insights with real-time data and sources...<br><br>This includes current information, research-backed data, and citation sources.`
+                };
+                
+                updateResponses(responses);
+            }, 2000);
+        }
+
+        function showLoading() {
+            const loadingText = '🔄 Searching across all AI platforms... Please wait';
+            document.getElementById('chatgptResponse').innerHTML = loadingText;
+            document.getElementById('geminiResponse').innerHTML = loadingText;
+            document.getElementById('perplexityResponse').innerHTML = loadingText;
+        }
+
+        function updateResponses(responses) {
+            document.getElementById('chatgptResponse').innerHTML = responses.chatgpt;
+            document.getElementById('geminiResponse').innerHTML = responses.gemini;
+            document.getElementById('perplexityResponse').innerHTML = responses.perplexity;
+        }
+
+        function saveResponse(aiType) {
+            alert(`✅ ${aiType} response saved successfully!`);
+        }
+
+        function shareResponse(aiType) {
+            alert(`📤 Sharing ${aiType} response...`);
+        }
+
+        function exploreMore() {
+            alert('🚀 Exploring more Perplexity features...');
+        }
+
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchAI();
+            }
+        });
+
+        // Preload images for better performance
+        window.onload = function() {
+            const imageUrls = [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/240px-ChatGPT_logo.svg.png',
+                'https://logowik.com/content/uploads/images/google-gemini.png',
+                'https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/v1495782520/dyqlqgqgditquqkqkqjq.png'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+    </script>
+</body>
+</html>
